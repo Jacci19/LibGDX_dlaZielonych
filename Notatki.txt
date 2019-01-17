@@ -5,3 +5,6 @@ camera - zapewnia nam np.
  - to, że poruszany przez nas obiekt jest w centrum ekranu a rusza się wszystko dokoła niego.
  - zoom
  - obrót
+
+ Dźwięki można pobrać stąd:
+ https://www.hongkiat.com/blog/download-free-sound-effects/

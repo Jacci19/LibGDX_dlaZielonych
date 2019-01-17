@@ -3,17 +3,18 @@ package pl.jacci;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 
 public class dlaZielonych extends ApplicationAdapter {
 
+	private Music music;
+	private Sound sound;
 	private OrthographicCamera camera;
-
 	private SpriteBatch batch;														//do rysowania po ekranie (puszka z farbą którą otwieramy i zamykamy)
 	private Texture texture;
 	private BitmapFont font;
@@ -22,6 +23,9 @@ public class dlaZielonych extends ApplicationAdapter {
 	
 	@Override
 	public void create () {															//tu inicjujemy pola, ładujemy dane, itp.
+		music = Gdx.audio.newMusic(Gdx.files.internal("SynthMusic.wav"));
+		music.play();
+		sound = Gdx.audio.newSound(Gdx.files.internal("BellSound.mp3"));
 		camera = new OrthographicCamera(800, 480);			// jak damy viewport równy wymiarom okna to nie będzie przeskalowania gry.
 		texture = new Texture("badlogic.jpg");
 		batch = new SpriteBatch();
@@ -71,25 +75,28 @@ public class dlaZielonych extends ApplicationAdapter {
 
 
 		if(Gdx.input.isKeyPressed(Input.Keys.A)){
-			System.out.println("Pressed A");
+			//System.out.println("Pressed A");
 			gameObject1.x -=300 * Gdx.graphics.getDeltaTime();				//aby na każdym sprzęcie gra działała z tym samym fpsem
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.W)){
-			System.out.println("Pressed W");
+			//System.out.println("Pressed W");
 			gameObject1.y +=300 * Gdx.graphics.getDeltaTime();
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.S)){
-			System.out.println("Pressed S");
+			//System.out.println("Pressed S");
 			gameObject1.y -=300 * Gdx.graphics.getDeltaTime();
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.D)){
-			System.out.println("Pressed D");
+			//System.out.println("Pressed D");
 			gameObject1.x +=300 * Gdx.graphics.getDeltaTime();
 		}
 
 		if(gameObject1.overlaps(gameObject2)){										//jeśli obiekt_1 koliduje z obiekt_2 to...
 			//Gdx.app.exit();														//...wyjdź z programu
-			System.out.println("KOLIZJA OBIEKTÓW");
+			System.out.println("KOLIZJA OBIEKTÓW___" + MathUtils.random(10));
+			sound.play();
+			gameObject1.x = 0;														//wraca na 0,0 aby sound się nie zapętlał
+			gameObject1.y = 0;
 		}
 
 		timerHelper += Gdx.graphics.getDeltaTime();									//Prosty timer
@@ -106,5 +113,7 @@ public class dlaZielonych extends ApplicationAdapter {
 		batch.dispose();
 		texture.dispose();
 		font.dispose();
+		music.dispose();
+		sound.dispose();
 	}
 }
