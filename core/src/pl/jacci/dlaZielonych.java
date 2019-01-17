@@ -5,11 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class dlaZielonych extends ApplicationAdapter {
+
+	private OrthographicCamera camera;
+
 	private SpriteBatch batch;														//do rysowania po ekranie (puszka z farbą którą otwieramy i zamykamy)
 	private Texture texture;
 	private BitmapFont font;
@@ -18,6 +22,7 @@ public class dlaZielonych extends ApplicationAdapter {
 	
 	@Override
 	public void create () {															//tu inicjujemy pola, ładujemy dane, itp.
+		camera = new OrthographicCamera(800, 480);			// jak damy viewport równy wymiarom okna to nie będzie przeskalowania gry.
 		texture = new Texture("badlogic.jpg");
 		batch = new SpriteBatch();
 		font = new BitmapFont();
@@ -26,7 +31,7 @@ public class dlaZielonych extends ApplicationAdapter {
 		gameObject1 = new GameObject(texture);
 		gameObject1.x = 50;
 		gameObject1.y = 50;
-		gameObject1.width = gameObject1.getTexture().getWidth();					//potrzebne do wykrywania kolizji
+		gameObject1.width = gameObject1.getTexture().getWidth();					//potrzebne do poprawnego wykrywania kolizji i działania kamery
 		gameObject1.height = gameObject1.getTexture().getHeight();
 
 		gameObject2 = new GameObject(texture);
@@ -51,6 +56,20 @@ public class dlaZielonych extends ApplicationAdapter {
 	}
 
 	private void update() {
+		camera.update();
+		batch.setProjectionMatrix(camera.combined);									//łączymy SpiriteBatch z odpowiednią kamerą
+		camera.position.set(gameObject1.x + gameObject1.width/2, gameObject1.y + gameObject1.height/2, 0);
+
+		if(Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)){							//przybliżanie
+			System.out.println("Pressed SHIFT_LEFT");
+			camera.zoom += 0.02f;
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT)){							//oddalanie
+			System.out.println("Pressed SHIFT_RIGHT");
+			camera.zoom -= 0.02f;
+		}
+
+
 		if(Gdx.input.isKeyPressed(Input.Keys.A)){
 			System.out.println("Pressed A");
 			gameObject1.x -=300 * Gdx.graphics.getDeltaTime();				//aby na każdym sprzęcie gra działała z tym samym fpsem
@@ -74,8 +93,9 @@ public class dlaZielonych extends ApplicationAdapter {
 		}
 
 		timerHelper += Gdx.graphics.getDeltaTime();									//Prosty timer
-		if(timerHelper > 1.8){
+		if(timerHelper > 0.8){
 			System.out.println("timer działa");										//wykonuje to co czas okrślony w warunku powyżej (w sekundach)
+			camera.rotate(0.50f);
 			timerHelper = 0;
 		}
 	}

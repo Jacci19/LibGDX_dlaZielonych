@@ -1,2 +1,7 @@
 Punkt 0,0 jest w lewym dolnym rogu.
 DeltaTime - różnica czasu pomiędzy poprzednią a obecną klatką wyrenderowaną w metodzie render. Stosowane, aby gra działała na każdym kompie z tym samym fps.
+
+camera - zapewnia nam np.
+ - to, że poruszany przez nas obiekt jest w centrum ekranu a rusza się wszystko dokoła niego.
+ - zoom
+ - obrót
