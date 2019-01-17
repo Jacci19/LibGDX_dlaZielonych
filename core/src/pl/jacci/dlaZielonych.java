@@ -14,6 +14,7 @@ public class dlaZielonych extends ApplicationAdapter {
 	private Texture texture;
 	private BitmapFont font;
 	private GameObject gameObject1, gameObject2;
+	private float timerHelper;														//timer oparty na deltaTime
 	
 	@Override
 	public void create () {															//tu inicjujemy pola, ładujemy dane, itp.
@@ -52,23 +53,30 @@ public class dlaZielonych extends ApplicationAdapter {
 	private void update() {
 		if(Gdx.input.isKeyPressed(Input.Keys.A)){
 			System.out.println("Pressed A");
-			gameObject1.x -=10;
+			gameObject1.x -=300 * Gdx.graphics.getDeltaTime();				//aby na każdym sprzęcie gra działała z tym samym fpsem
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.W)){
 			System.out.println("Pressed W");
-			gameObject1.y +=10;
+			gameObject1.y +=300 * Gdx.graphics.getDeltaTime();
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.S)){
 			System.out.println("Pressed S");
-			gameObject1.y -=10;
+			gameObject1.y -=300 * Gdx.graphics.getDeltaTime();
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.D)){
 			System.out.println("Pressed D");
-			gameObject1.x +=10;
+			gameObject1.x +=300 * Gdx.graphics.getDeltaTime();
 		}
 
 		if(gameObject1.overlaps(gameObject2)){										//jeśli obiekt_1 koliduje z obiekt_2 to...
-			Gdx.app.exit();															//...wyjdź z programu
+			//Gdx.app.exit();														//...wyjdź z programu
+			System.out.println("KOLIZJA OBIEKTÓW");
+		}
+
+		timerHelper += Gdx.graphics.getDeltaTime();									//Prosty timer
+		if(timerHelper > 1.8){
+			System.out.println("timer działa");										//wykonuje to co czas okrślony w warunku powyżej (w sekundach)
+			timerHelper = 0;
 		}
 	}
 

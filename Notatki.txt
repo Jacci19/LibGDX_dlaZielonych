@@ -1,1 +1,2 @@
 Punkt 0,0 jest w lewym dolnym rogu.
+DeltaTime - różnica czasu pomiędzy poprzednią a obecną klatką wyrenderowaną w metodzie render. Stosowane, aby gra działała na każdym kompie z tym samym fps.
