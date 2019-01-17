@@ -1,4 +1,4 @@
-package pl.jacci;
+package pl.jacci.dlaZielonych;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 
-public class dlaZielonych extends ApplicationAdapter {
+public class DlaZielonych extends ApplicationAdapter {
 
 	private Music music;
 	private Sound sound;
@@ -23,11 +23,11 @@ public class dlaZielonych extends ApplicationAdapter {
 	
 	@Override
 	public void create () {															//tu inicjujemy pola, ładujemy dane, itp.
-		music = Gdx.audio.newMusic(Gdx.files.internal("SynthMusic.wav"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("dlaZielonych/SynthMusic.wav"));
 		music.play();
-		sound = Gdx.audio.newSound(Gdx.files.internal("BellSound.mp3"));
+		sound = Gdx.audio.newSound(Gdx.files.internal("dlaZielonych/BellSound.mp3"));
 		camera = new OrthographicCamera(800, 480);			// jak damy viewport równy wymiarom okna to nie będzie przeskalowania gry.
-		texture = new Texture("badlogic.jpg");
+		texture = new Texture("dlaZielonych/badlogic.jpg");
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		font.setColor(Color.GREEN);
