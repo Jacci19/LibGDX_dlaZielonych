@@ -3,6 +3,8 @@ package pl.jacci.desktop;
 /***Projekt na podstawie kursu you tube javaDevMatt - LibGDX dla zielonych
 *	dlaZielonych - lekcje 1-7		(800x480)
  *	jumpGame 	- lekcje 8-10		(480x800)
+ *	https://www.youtube.com/watch?v=e_liJETU3u8&list=PLFq6ri1W22hyyGVo7pmTMstd-pZWZBmRg&index=1
+ * 	https://bitbucket.org/mateuszkupilas/jump-tutorial/src
 */
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
