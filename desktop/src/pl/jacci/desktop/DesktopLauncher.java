@@ -17,7 +17,8 @@ public class DesktopLauncher {
 		config.width = 480;
 		config.height = 800;
 		config.resizable = false;
-		//new LwjglApplication(new DlaZielonych(), config);
-		new LwjglApplication(new JumpGame(), config);
+																	//Uncomment a line to program which you want to run:
+		//new LwjglApplication(new DlaZielonych(), config);				// 1. logo badlogic przesuwa się i obraca
+		new LwjglApplication(new JumpGame(), config);					// 2. gra, coś jak Icy Tower
 	}
 }

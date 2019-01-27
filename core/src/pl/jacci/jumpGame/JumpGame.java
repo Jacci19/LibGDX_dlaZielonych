@@ -42,7 +42,6 @@ public class JumpGame extends ApplicationAdapter {
         playerTexture = assets.manager.get("jumpGame/jajo.png", Texture.class);             //ten sposób zalecany jest gdy jest dużo assetów
         platformTexture = assets.manager.get("jumpGame/platform.png", Texture.class);
         music = assets.manager.get("jumpGame/music.ogg", Music.class);
-
     }
 
     private void initGame() {

@@ -8,3 +8,7 @@ camera - zapewnia nam np.
 
  Dźwięki można pobrać stąd:
  https://www.hongkiat.com/blog/download-free-sound-effects/
+
+
+ Po uruchomieniu projektu na home computer (ściągniętego z mojego gita) po odpaleniu nie działał. Nie widział assetów.
+ Pomogło to: okno Run -> Edit Configurations -> w oknie "Working Directory" dopisałem "core\assets" na końcu ścieżki.
